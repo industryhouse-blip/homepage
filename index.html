@@ -1797,7 +1797,24 @@ footer {
         window.location.href = destination.href;
       }
     }, true);
+// Mobile/iPhone helper: if music was playing, resume after the next tap.
+document.addEventListener("touchstart", async function resumeMobileMusic() {
+  const state = readState();
 
+  if (state && state.playing && siteMusic.paused) {
+    setAudioTime(state);
+
+    try {
+      await siteMusic.play();
+      setUI(true);
+      writeState(true);
+    } catch (error) {
+      musicLabel.textContent = "Resume";
+    }
+  }
+
+  document.removeEventListener("touchstart", resumeMobileMusic);
+}, { once: true });
     window.addEventListener("pagehide", () => writeState(!siteMusic.paused));
     window.addEventListener("beforeunload", () => writeState(!siteMusic.paused));
 
