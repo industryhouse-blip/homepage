@@ -629,15 +629,16 @@ section {
   color: rgba(244, 235, 221, 0.84);
 }
 
-..team-grid {
+.team-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1.5rem;
-  margin-top: 2rem;
+  margin-top: 3rem;
 }
 
 .team-card {
-  background: #f5efe6;
+  background: rgba(244, 235, 221, 0.08);
+  border: 1px solid rgba(244, 235, 221, 0.14);
   border-radius: var(--radius);
   overflow: hidden;
   box-shadow: var(--soft-shadow);
@@ -645,33 +646,31 @@ section {
 
 .team-card img {
   width: 100%;
-  height: 420px;
+  height: 430px;
   object-fit: cover;
+  object-position: center top;
   display: block;
 }
 
 .team-body {
-  padding: 1.5rem;
+  padding: 1.7rem;
 }
 
 .team-body h3 {
-  margin: 0 0 0.35rem;
-  font-size: 1.5rem;
-  color: #1f1b18;
+  font-size: 1.8rem;
+  margin-bottom: 0.2rem;
+  color: var(--cream);
 }
 
-.team-role {
-  margin-bottom: 0.9rem;
-  font-weight: 700;
-  color: #b88a44;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  font-size: 0.82rem;
+.team-body .role {
+  color: var(--brass);
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 800;
+  margin-bottom: 1rem;
 }
 
 .team-body p {
-  color: #3b342f;
-  line-height: 1.6;
+  color: rgba(244, 235, 221, 0.85);
 }
 
 @media (max-width: 768px) {
@@ -682,6 +681,7 @@ section {
   .team-card img {
     height: 340px;
   }
+}
 
 .portrait {
   min-height: 350px;
@@ -1364,42 +1364,43 @@ footer {
     </section>
 
     <section class="team" id="team">
-      <div class="container">
-        <div class="eyebrow">Owner & Management</div>
-        <h2 class="section-title">The people behind the space.</h2>
-        <p class="section-copy">
-          Industry House is guided by the history of Industry Café & Jazz and managed
-          with a focus on professionalism, hospitality, and creative collaboration.
-        </p>
-<div class="team-card">
-  <img src="images/industry-house-aron.png" alt="Aron">
-  <div class="team-body">
-              <h3>Aron Tadesse</h3>
-              <div class="role">Owner, Industry Café & Jazz</div>
-              <p>
-                Add the owner’s story here. This section should share the history of
-                Industry Café & Jazz, the vision behind the space, and why opening the
-                venue for rentals is the next chapter of the business.
-              </p>
-            </div>
-          </article>
+  <div class="container">
+    <div class="eyebrow">Owner & Management</div>
+    <h2 class="section-title">The people behind the space.</h2>
+    <p class="section-copy">
+      Industry House is guided by the history of Industry Café & Jazz and managed
+      with a focus on professionalism, hospitality, and creative collaboration.
+    </p>
 
- <div class="team-card">
-<img src="images/industry-house-zerin.png" alt="Zerin Scales">
-<div class="team-body">
-              <h3>Zerin Scales</h3>
-              <div class="role">Venue Management</div>
-              <p>
-                Zerin Scales supports Industry House’s booking experience, creative partnerships,
-                production coordination, and guest communication. His focus is helping photographers,
-                filmmakers, brands, artists, and community organizations use the space with clarity and
-                professionalism.
-              </p>
-            </div>
-          </article>
+    <div class="team-grid">
+      <div class="team-card">
+        <img src="images/industry-house-aron.png" alt="Aron Tadesse">
+        <div class="team-body">
+          <h3>Aron Tadesse</h3>
+          <div class="role">Owner, Industry Café & Jazz</div>
+          <p>
+            Aron brings the heart of Industry Café & Jazz to Industry House, carrying forward
+            a legacy of Eritrean cuisine, live music, culture, and community in Culver City. As a jazz musician with more than 20 years in the catering business, Aron saw a need
+            for a community gathering spot where creatives, artists, families, and organizations could bring their dreams to life
+          </p>
         </div>
       </div>
-    </section>
+
+      <div class="team-card">
+        <img src="images/industry-house-zerin.png" alt="Zerin Scales">
+        <div class="team-body">
+          <h3>Zerin Scales</h3>
+          <div class="role">Venue Management</div>
+          <p>
+            Zerin Scales supports Industry House’s booking experience, creative partnerships,
+            production coordination, and guest communication.A photographer by trade who has served as VP of Operations roles on short film projects,
+            Zerin brings a creative eye and production experience to Industry House.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
     <section class="booking" id="book">
       <div class="container">
