@@ -157,6 +157,61 @@ header {
   color: var(--brass);
 }
 
+
+
+
+
+
+/* Header logo + wordmark */
+.brand.wordmark {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 800;
+  font-size: 1.65rem;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.brand.wordmark img {
+  display: block;
+  height: 54px;
+  width: auto;
+}
+
+.brand.wordmark .brand-industry {
+  color: var(--cream);
+}
+
+.brand.wordmark .brand-house {
+  color: var(--brass);
+}
+
+@media (max-width: 900px) {
+  .brand.wordmark {
+    font-size: 1.35rem;
+    gap: 0.5rem;
+  }
+
+  .brand.wordmark img {
+    height: 42px;
+  }
+}
+
+@media (max-width: 600px) {
+  .brand.wordmark {
+    font-size: 1.05rem;
+    gap: 0.4rem;
+  }
+
+  .brand.wordmark img {
+    height: 34px;
+  }
+}
+
 .nav-links {
   display: flex;
   align-items: center;
@@ -772,6 +827,45 @@ footer {
     width: 100%;
   }
 }
+
+/* Better readability for light cards on dark sections */
+.detail-card h3,
+.use-card h3,
+.amenity h3 {
+  color: var(--charcoal);
+}
+
+.dark-section .detail-card h3 {
+  color: var(--walnut);
+}
+
+.dark-section .detail-card p {
+  color: rgba(31, 27, 24, 0.76);
+}
+
+/* Slow photo reveal animation */
+.reveal-photo {
+  opacity: 0;
+  transform: translateY(34px);
+  transition:
+    opacity 0.85s ease,
+    transform 0.85s ease;
+  transition-delay: var(--delay, 0s);
+}
+
+.reveal-photo.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* Normal spacing between Industry and House in the header wordmark */
+.brand.wordmark .brand-text {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.22rem;
+}
+
 </style>
 </head>
 
@@ -779,7 +873,7 @@ footer {
   
 <header>
   <div class="container nav">
-    <a href="index.html" class="brand">Industry <span>House</span></a>
+    <a href="index.html" class="brand wordmark" aria-label="Industry House home"><img src="images/industry-house-logo-mark.png" alt=""><span class="brand-text"><span class="brand-industry">Industry</span><span class="brand-house">House</span></span></a>
 
     <nav class="nav-links" aria-label="Main navigation">
       <a href="index.html#story">Story</a>
@@ -934,14 +1028,13 @@ footer {
         <div class="eyebrow">Book Industry House</div>
         <h2 class="section-title">Need the space for your next project?</h2>
         <p class="section-copy">
-          Book directly or connect through Peerspace, Giggster, or Spacer once your listings are live.
+          Book directly or connect through Peerspace or Giggster once your listings are live.
         </p>
 
         <div class="booking-buttons">
           <a href="mailto:bookings@theindustryhouse.com?subject=Industry%20House%20Booking%20Inquiry" class="btn btn-primary">Book Direct</a>
           <a href="#" class="btn btn-secondary">Book on Peerspace</a>
           <a href="#" class="btn btn-secondary">Book on Giggster</a>
-          <a href="#" class="btn btn-secondary">Book on Spacer</a>
         </div>
       </div>
     </section>
@@ -958,6 +1051,26 @@ footer {
 
 <script>
   document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+
+<script>
+  const revealPhotos = document.querySelectorAll(".reveal-photo");
+
+  const photoObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("show");
+        photoObserver.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.18
+  });
+
+  revealPhotos.forEach((photo) => {
+    photoObserver.observe(photo);
+  });
 </script>
 
 </body>
