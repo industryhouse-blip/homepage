@@ -1119,6 +1119,7 @@ footer {
 
 
 
+
 <script>
   const musicToggle = document.getElementById("musicToggle");
   const siteMusic = document.getElementById("siteMusic");
@@ -1130,8 +1131,20 @@ footer {
     siteMusic.volume = 0.45;
 
     function getSavedState() {
+      const params = new URLSearchParams(window.location.search);
+      const urlMusic = params.get("music");
+      const urlTime = parseFloat(params.get("t"));
+
+      if (urlMusic === "1" && !Number.isNaN(urlTime)) {
+        return {
+          playing: true,
+          currentTime: urlTime,
+          savedAt: Date.now()
+        };
+      }
+
       try {
-        return JSON.parse(sessionStorage.getItem(STORAGE_KEY)) || null;
+        return JSON.parse(localStorage.getItem(STORAGE_KEY)) || null;
       } catch (error) {
         return null;
       }
@@ -1144,7 +1157,8 @@ footer {
         currentTime: siteMusic.currentTime || 0,
         savedAt: Date.now()
       };
-      sessionStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      return state;
     }
 
     function setPlayingUI(isPlaying) {
@@ -1159,16 +1173,22 @@ footer {
       }
     }
 
-    function restoreTime() {
-      const savedState = getSavedState();
+    function cleanUrlMusicParams() {
+      const url = new URL(window.location.href);
+      if (url.searchParams.has("music") || url.searchParams.has("t")) {
+        url.searchParams.delete("music");
+        url.searchParams.delete("t");
+        window.history.replaceState({}, "", url.pathname + url.search + url.hash);
+      }
+    }
 
+    function getRestorePoint(savedState) {
       if (!savedState || typeof savedState.currentTime !== "number") {
-        return null;
+        return 0;
       }
 
       let restorePoint = savedState.currentTime;
 
-      // If the song was playing during navigation, account for the few seconds spent loading the next page.
       if (savedState.playing && savedState.savedAt) {
         const elapsed = (Date.now() - savedState.savedAt) / 1000;
         restorePoint += elapsed;
@@ -1178,23 +1198,31 @@ footer {
         restorePoint = restorePoint % siteMusic.duration;
       }
 
-      try {
-        siteMusic.currentTime = Math.max(0, restorePoint);
-      } catch (error) {
-        // Some browsers need loadedmetadata before accepting currentTime.
-      }
-
-      return savedState;
+      return Math.max(0, restorePoint);
     }
 
-    async function restoreAndPlayIfNeeded() {
-      const savedState = restoreTime();
+    function restoreTime(savedState) {
+      const restorePoint = getRestorePoint(savedState);
+      try {
+        siteMusic.currentTime = restorePoint;
+      } catch (error) {
+        setTimeout(() => {
+          try {
+            siteMusic.currentTime = restorePoint;
+          } catch (innerError) {}
+        }, 250);
+      }
+    }
+
+    async function restoreOnLoad() {
+      const savedState = getSavedState();
 
       if (!savedState) {
         setPlayingUI(false);
         return;
       }
 
+      restoreTime(savedState);
       setPlayingUI(savedState.playing);
 
       if (savedState.playing) {
@@ -1205,19 +1233,23 @@ footer {
           musicLabel.textContent = "Resume";
         }
       }
+
+      cleanUrlMusicParams();
     }
 
-    // Wait until the browser knows the audio duration before restoring timestamp.
     if (siteMusic.readyState >= 1) {
-      restoreAndPlayIfNeeded();
+      restoreOnLoad();
     } else {
-      siteMusic.addEventListener("loadedmetadata", restoreAndPlayIfNeeded, { once: true });
+      siteMusic.addEventListener("loadedmetadata", restoreOnLoad, { once: true });
     }
 
     musicToggle.addEventListener("click", async () => {
       if (siteMusic.paused) {
         try {
-          restoreTime();
+          const savedState = getSavedState();
+          if (savedState) {
+            restoreTime(savedState);
+          }
           await siteMusic.play();
           setPlayingUI(true);
           saveMusicState(true);
@@ -1231,11 +1263,44 @@ footer {
       }
     });
 
+    // Save constantly while the song is playing.
+    setInterval(() => {
+      if (!siteMusic.paused) {
+        saveMusicState(true);
+      }
+    }, 350);
+
     siteMusic.addEventListener("timeupdate", () => saveMusicState(!siteMusic.paused));
     siteMusic.addEventListener("play", () => saveMusicState(true));
-    siteMusic.addEventListener("pause", () => saveMusicState(false));
+    siteMusic.addEventListener("pause", () => {
+      // Do not overwrite the saved playing state during page navigation.
+      if (document.visibilityState !== "hidden") {
+        saveMusicState(false);
+      }
+    });
 
-    // pagehide is more reliable than beforeunload on Safari/iPhone.
+    // Add timestamp to internal page links so the next HTML page gets the exact spot.
+    document.querySelectorAll('a[href]').forEach((link) => {
+      link.addEventListener("click", () => {
+        const href = link.getAttribute("href");
+        if (!href || href.startsWith("#") || href.startsWith("http") || href.startsWith("mailto:") || href.startsWith("tel:")) {
+          return;
+        }
+
+        const isHtmlPage = href.includes(".html") || href === "/" || href === "./";
+        if (!isHtmlPage || siteMusic.paused) {
+          saveMusicState(!siteMusic.paused);
+          return;
+        }
+
+        const state = saveMusicState(true);
+        const url = new URL(href, window.location.href);
+        url.searchParams.set("music", "1");
+        url.searchParams.set("t", String(state.currentTime));
+        link.setAttribute("href", url.pathname.split("/").pop() + url.search + url.hash);
+      });
+    });
+
     window.addEventListener("pagehide", () => saveMusicState(!siteMusic.paused));
     window.addEventListener("beforeunload", () => saveMusicState(!siteMusic.paused));
     document.addEventListener("visibilitychange", () => {
@@ -1245,6 +1310,7 @@ footer {
     });
   }
 </script>
+
 
 
 
