@@ -1118,6 +1118,7 @@ footer {
 
 
 
+
 <script>
   const musicToggle = document.getElementById("musicToggle");
   const siteMusic = document.getElementById("siteMusic");
@@ -1128,9 +1129,18 @@ footer {
 
     siteMusic.volume = 0.45;
 
-    function saveMusicState() {
+    function getSavedState() {
+      try {
+        return JSON.parse(sessionStorage.getItem(STORAGE_KEY)) || null;
+      } catch (error) {
+        return null;
+      }
+    }
+
+    function saveMusicState(forcePlaying) {
+      const isPlaying = typeof forcePlaying === "boolean" ? forcePlaying : !siteMusic.paused;
       const state = {
-        playing: !siteMusic.paused,
+        playing: isPlaying,
         currentTime: siteMusic.currentTime || 0,
         savedAt: Date.now()
       };
@@ -1149,58 +1159,93 @@ footer {
       }
     }
 
-    function getSavedState() {
-      try {
-        return JSON.parse(sessionStorage.getItem(STORAGE_KEY)) || null;
-      } catch (error) {
+    function restoreTime() {
+      const savedState = getSavedState();
+
+      if (!savedState || typeof savedState.currentTime !== "number") {
         return null;
       }
+
+      let restorePoint = savedState.currentTime;
+
+      // If the song was playing during navigation, account for the few seconds spent loading the next page.
+      if (savedState.playing && savedState.savedAt) {
+        const elapsed = (Date.now() - savedState.savedAt) / 1000;
+        restorePoint += elapsed;
+      }
+
+      if (siteMusic.duration && Number.isFinite(siteMusic.duration)) {
+        restorePoint = restorePoint % siteMusic.duration;
+      }
+
+      try {
+        siteMusic.currentTime = Math.max(0, restorePoint);
+      } catch (error) {
+        // Some browsers need loadedmetadata before accepting currentTime.
+      }
+
+      return savedState;
     }
 
-    const savedState = getSavedState();
+    async function restoreAndPlayIfNeeded() {
+      const savedState = restoreTime();
 
-    if (savedState && typeof savedState.currentTime === "number") {
-      siteMusic.currentTime = savedState.currentTime;
+      if (!savedState) {
+        setPlayingUI(false);
+        return;
+      }
+
       setPlayingUI(savedState.playing);
 
       if (savedState.playing) {
-        siteMusic.play().then(() => {
+        try {
+          await siteMusic.play();
           setPlayingUI(true);
-        }).catch(() => {
+        } catch (error) {
           musicLabel.textContent = "Resume";
-        });
+        }
       }
+    }
+
+    // Wait until the browser knows the audio duration before restoring timestamp.
+    if (siteMusic.readyState >= 1) {
+      restoreAndPlayIfNeeded();
+    } else {
+      siteMusic.addEventListener("loadedmetadata", restoreAndPlayIfNeeded, { once: true });
     }
 
     musicToggle.addEventListener("click", async () => {
       if (siteMusic.paused) {
         try {
-          const savedState = getSavedState();
-          if (savedState && typeof savedState.currentTime === "number") {
-            siteMusic.currentTime = savedState.currentTime;
-          }
-
+          restoreTime();
           await siteMusic.play();
           setPlayingUI(true);
-          saveMusicState();
+          saveMusicState(true);
         } catch (error) {
           musicLabel.textContent = "Tap Again";
         }
       } else {
+        saveMusicState(false);
         siteMusic.pause();
         setPlayingUI(false);
-        saveMusicState();
       }
     });
 
-    siteMusic.addEventListener("timeupdate", saveMusicState);
-    siteMusic.addEventListener("play", saveMusicState);
-    siteMusic.addEventListener("pause", saveMusicState);
+    siteMusic.addEventListener("timeupdate", () => saveMusicState(!siteMusic.paused));
+    siteMusic.addEventListener("play", () => saveMusicState(true));
+    siteMusic.addEventListener("pause", () => saveMusicState(false));
 
-    window.addEventListener("beforeunload", saveMusicState);
-    document.addEventListener("visibilitychange", saveMusicState);
+    // pagehide is more reliable than beforeunload on Safari/iPhone.
+    window.addEventListener("pagehide", () => saveMusicState(!siteMusic.paused));
+    window.addEventListener("beforeunload", () => saveMusicState(!siteMusic.paused));
+    document.addEventListener("visibilitychange", () => {
+      if (document.visibilityState === "hidden") {
+        saveMusicState(!siteMusic.paused);
+      }
+    });
   }
 </script>
+
 
 
 </body>
