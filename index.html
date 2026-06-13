@@ -1442,6 +1442,7 @@ footer {
 
 
 
+
 <script>
   const musicToggle = document.getElementById("musicToggle");
   const siteMusic = document.getElementById("siteMusic");
@@ -1452,19 +1453,7 @@ footer {
 
     siteMusic.volume = 0.45;
 
-    function getSavedState() {
-      const params = new URLSearchParams(window.location.search);
-      const urlMusic = params.get("music");
-      const urlTime = parseFloat(params.get("t"));
-
-      if (urlMusic === "1" && !Number.isNaN(urlTime)) {
-        return {
-          playing: true,
-          currentTime: urlTime,
-          savedAt: Date.now()
-        };
-      }
-
+    function readState() {
       try {
         return JSON.parse(localStorage.getItem(STORAGE_KEY)) || null;
       } catch (error) {
@@ -1472,19 +1461,38 @@ footer {
       }
     }
 
-    function saveMusicState(forcePlaying) {
-      const isPlaying = typeof forcePlaying === "boolean" ? forcePlaying : !siteMusic.paused;
+    function writeState(playing, timeOverride) {
       const state = {
-        playing: isPlaying,
-        currentTime: siteMusic.currentTime || 0,
+        playing: playing,
+        currentTime: typeof timeOverride === "number" ? timeOverride : (siteMusic.currentTime || 0),
         savedAt: Date.now()
       };
+
       localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
       return state;
     }
 
-    function setPlayingUI(isPlaying) {
-      if (isPlaying) {
+    function readUrlState() {
+      const params = new URLSearchParams(window.location.search);
+      const music = params.get("music");
+      const time = parseFloat(params.get("t"));
+
+      if (music === "1" && !Number.isNaN(time)) {
+        const state = {
+          playing: true,
+          currentTime: time,
+          savedAt: Date.now()
+        };
+
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+        return state;
+      }
+
+      return null;
+    }
+
+    function setUI(playing) {
+      if (playing) {
         musicToggle.classList.add("is-playing");
         musicToggle.setAttribute("aria-label", "Turn music off");
         musicLabel.textContent = "Music On";
@@ -1495,143 +1503,173 @@ footer {
       }
     }
 
-    function cleanUrlMusicParams() {
-      const url = new URL(window.location.href);
-      if (url.searchParams.has("music") || url.searchParams.has("t")) {
-        url.searchParams.delete("music");
-        url.searchParams.delete("t");
-        window.history.replaceState({}, "", url.pathname + url.search + url.hash);
-      }
+    function getRestoreState() {
+      return readUrlState() || readState();
     }
 
-    function getRestorePoint(savedState) {
-      if (!savedState || typeof savedState.currentTime !== "number") {
+    function getRestoreTime(state) {
+      if (!state || typeof state.currentTime !== "number") {
         return 0;
       }
 
-      let restorePoint = savedState.currentTime;
+      let restoreTime = state.currentTime;
 
-      if (savedState.playing && savedState.savedAt) {
-        const elapsed = (Date.now() - savedState.savedAt) / 1000;
-        restorePoint += elapsed;
+      if (state.playing && state.savedAt) {
+        const secondsSinceSaved = (Date.now() - state.savedAt) / 1000;
+        restoreTime += secondsSinceSaved;
       }
 
       if (siteMusic.duration && Number.isFinite(siteMusic.duration)) {
-        restorePoint = restorePoint % siteMusic.duration;
+        restoreTime = restoreTime % siteMusic.duration;
       }
 
-      return Math.max(0, restorePoint);
+      return Math.max(0, restoreTime);
     }
 
-    function restoreTime(savedState) {
-      const restorePoint = getRestorePoint(savedState);
+    function setAudioTime(state) {
+      if (!state) return;
+
+      const restoreTime = getRestoreTime(state);
+
       try {
-        siteMusic.currentTime = restorePoint;
+        siteMusic.currentTime = restoreTime;
       } catch (error) {
         setTimeout(() => {
           try {
-            siteMusic.currentTime = restorePoint;
+            siteMusic.currentTime = restoreTime;
           } catch (innerError) {}
-        }, 250);
+        }, 300);
       }
     }
 
-    async function restoreOnLoad() {
-      const savedState = getSavedState();
+    async function restoreOnPageLoad() {
+      const state = getRestoreState();
 
-      if (!savedState) {
-        setPlayingUI(false);
+      if (!state) {
+        setUI(false);
         return;
       }
 
-      restoreTime(savedState);
-      setPlayingUI(savedState.playing);
+      setAudioTime(state);
+      setUI(state.playing);
 
-      if (savedState.playing) {
+      if (state.playing) {
         try {
           await siteMusic.play();
-          setPlayingUI(true);
+          setUI(true);
         } catch (error) {
           musicLabel.textContent = "Resume";
         }
       }
 
-      cleanUrlMusicParams();
+      // Remove music query from address bar after reading it.
+      if (window.location.search.includes("music=1") || window.location.search.includes("t=")) {
+        const cleanUrl = window.location.pathname + window.location.hash;
+        window.history.replaceState({}, "", cleanUrl);
+      }
     }
 
     if (siteMusic.readyState >= 1) {
-      restoreOnLoad();
+      restoreOnPageLoad();
     } else {
-      siteMusic.addEventListener("loadedmetadata", restoreOnLoad, { once: true });
+      siteMusic.addEventListener("loadedmetadata", restoreOnPageLoad, { once: true });
     }
 
     musicToggle.addEventListener("click", async () => {
       if (siteMusic.paused) {
+        const state = getRestoreState();
+        if (state) {
+          setAudioTime(state);
+        }
+
         try {
-          const savedState = getSavedState();
-          if (savedState) {
-            restoreTime(savedState);
-          }
           await siteMusic.play();
-          setPlayingUI(true);
-          saveMusicState(true);
+          setUI(true);
+          writeState(true);
         } catch (error) {
           musicLabel.textContent = "Tap Again";
         }
       } else {
-        saveMusicState(false);
+        writeState(false);
         siteMusic.pause();
-        setPlayingUI(false);
+        setUI(false);
       }
     });
 
-    // Save constantly while the song is playing.
+    // Keep state fresh.
     setInterval(() => {
       if (!siteMusic.paused) {
-        saveMusicState(true);
+        writeState(true);
       }
-    }, 350);
+    }, 250);
 
-    siteMusic.addEventListener("timeupdate", () => saveMusicState(!siteMusic.paused));
-    siteMusic.addEventListener("play", () => saveMusicState(true));
+    siteMusic.addEventListener("timeupdate", () => {
+      if (!siteMusic.paused) {
+        writeState(true);
+      }
+    });
+
+    siteMusic.addEventListener("play", () => writeState(true));
+
     siteMusic.addEventListener("pause", () => {
-      // Do not overwrite the saved playing state during page navigation.
       if (document.visibilityState !== "hidden") {
-        saveMusicState(false);
+        writeState(false);
       }
     });
 
-    // Add timestamp to internal page links so the next HTML page gets the exact spot.
-    document.querySelectorAll('a[href]').forEach((link) => {
-      link.addEventListener("click", () => {
-        const href = link.getAttribute("href");
-        if (!href || href.startsWith("#") || href.startsWith("http") || href.startsWith("mailto:") || href.startsWith("tel:")) {
-          return;
-        }
+    // This is the important part:
+    // stop normal navigation, save exact timestamp, then manually go to the next page with the timestamp.
+    document.addEventListener("click", (event) => {
+      const link = event.target.closest("a[href]");
+      if (!link) return;
 
-        const isHtmlPage = href.includes(".html") || href === "/" || href === "./";
-        if (!isHtmlPage || siteMusic.paused) {
-          saveMusicState(!siteMusic.paused);
-          return;
-        }
+      const rawHref = link.getAttribute("href");
+      if (!rawHref) return;
 
-        const state = saveMusicState(true);
-        const url = new URL(href, window.location.href);
-        url.searchParams.set("music", "1");
-        url.searchParams.set("t", String(state.currentTime));
-        link.setAttribute("href", url.pathname.split("/").pop() + url.search + url.hash);
-      });
-    });
+      if (
+        rawHref.startsWith("#") ||
+        rawHref.startsWith("mailto:") ||
+        rawHref.startsWith("tel:") ||
+        rawHref.startsWith("http://") ||
+        rawHref.startsWith("https://")
+      ) {
+        return;
+      }
 
-    window.addEventListener("pagehide", () => saveMusicState(!siteMusic.paused));
-    window.addEventListener("beforeunload", () => saveMusicState(!siteMusic.paused));
+      const destination = new URL(rawHref, window.location.href);
+      const currentOrigin = window.location.origin;
+
+      // Only handle internal HTML page links.
+      if (destination.origin !== currentOrigin) return;
+
+      const isInternalPage =
+        destination.pathname.endsWith(".html") ||
+        destination.pathname.endsWith("/") ||
+        destination.pathname === window.location.pathname;
+
+      if (!isInternalPage) return;
+
+      const state = writeState(!siteMusic.paused);
+
+      if (!siteMusic.paused) {
+        event.preventDefault();
+        destination.searchParams.set("music", "1");
+        destination.searchParams.set("t", String(state.currentTime));
+        window.location.href = destination.href;
+      }
+    }, true);
+
+    window.addEventListener("pagehide", () => writeState(!siteMusic.paused));
+    window.addEventListener("beforeunload", () => writeState(!siteMusic.paused));
+
     document.addEventListener("visibilitychange", () => {
       if (document.visibilityState === "hidden") {
-        saveMusicState(!siteMusic.paused);
+        writeState(!siteMusic.paused);
       }
     });
   }
 </script>
+
 
 
 

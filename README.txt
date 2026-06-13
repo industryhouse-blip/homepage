@@ -1,6 +1,11 @@
-Industry House website with stronger music timestamp carryover.
+Industry House website with forced music resume across separate pages.
 
-This version uses localStorage and also passes the current audio timestamp through internal page links using ?music=1&t=SECONDS.
-That makes the next page restore the song from the same spot much more reliably.
+This keeps the multi-page website structure.
+Internal page links are intercepted, the exact audio time is saved, and the next page receives it through the URL.
 
-Important: it still cannot be perfectly seamless because each HTML page reloads. But it should no longer restart from the beginning when moving between pages.
+Important upload notes:
+- Upload the audio folder.
+- Upload every updated HTML file.
+- Test on the published GitHub Pages URL, not just from local file preview.
+
+Browsers may still make a tiny pause during page load, but this version should stop the track from restarting at 0:00.
