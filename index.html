@@ -1138,7 +1138,24 @@ footer {
     font-size: 0.7rem;
   }
 }
+<style>
+  /* all your current CSS is above */
 
+  .perfect-for {
+    padding: 6rem 0;
+    background:
+      radial-gradient(circle at top right, rgba(184, 138, 68, 0.18), transparent 34%),
+      var(--cream);
+  }
+
+  .section-head {
+    max-width: 850px;
+    margin-bottom: 2.4rem;
+  }
+
+  /* paste the rest of the accordion CSS here */
+
+</style>
 </style>
 </head>
 
@@ -1283,60 +1300,103 @@ footer {
       </div>
     </section>
 
-    <section id="uses">
-      <div class="container">
-        <div class="uses-intro">
-          <div class="eyebrow">Perfect For</div>
-          <h2 class="section-title">Made for creators, brands, artists, businesses, and community.</h2>
-          <p class="section-copy">
-            Industry House supports productions, gatherings, creative sessions, and experiences
-            that need more character than a blank room.
-          </p>
+   <section class="perfect-for" id="uses">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">Perfect For</p>
+      <h2 class="section-title">Pick your purpose. Bring the vision.</h2>
+      <p class="section-copy">
+        Industry House is built for creators, brands, families, artists, and teams who need a space that can shift with the moment.
+      </p>
+    </div>
+
+    <div class="accordion-wrap">
+      <details open>
+        <summary>
+          <span class="summary-left">
+            <span class="number">01</span>
+            Photo Shoots
+          </span>
+          <span class="plus">+</span>
+        </summary>
+        <div class="accordion-body">
+          Headshots, portraits, brand campaigns, product photography, lifestyle sessions, and creative content days.
+          <div class="quick-line">Shoot it here</div>
         </div>
+      </details>
 
-        <div class="uses-grid">
-          <div class="use-card">
-            <h3>Photography</h3>
-            <p>Headshots, portraits, brand campaigns, product shoots, and editorial sessions.</p>
-          </div>
-
-          <div class="use-card">
-            <h3>Film</h3>
-            <p>Short films, interviews, creative productions, campaign visuals, and video content.</p>
-          </div>
-
-          <div class="use-card">
-            <h3>Music Videos</h3>
-            <p>Artist visuals, live performance concepts, promotional reels, and content shoots.</p>
-          </div>
-
-          <div class="use-card">
-            <h3>Podcasts</h3>
-            <p>Interviews, creator conversations, branded shows, and intimate recording setups.</p>
-          </div>
-
-          <div class="use-card">
-            <h3>Workshops</h3>
-            <p>Classes, panels, creative lessons, business gatherings, and skill-building sessions.</p>
-          </div>
-
-          <div class="use-card">
-            <h3>Private Events</h3>
-            <p>Birthdays, celebrations, dinners, receptions, mixers, and small gatherings.</p>
-          </div>
-
-          <div class="use-card">
-            <h3>Company Functions</h3>
-            <p>Team gatherings, networking events, client mixers, business celebrations, and professional meetups.</p>
-          </div>
-
-          <div class="use-card">
-            <h3>Community</h3>
-            <p>Networking events, cultural programs, meetups, and gatherings with purpose.</p>
-          </div>
+      <details>
+        <summary>
+          <span class="summary-left">
+            <span class="number">02</span>
+            Film & Content
+          </span>
+          <span class="plus">+</span>
+        </summary>
+        <div class="accordion-body">
+          Music videos, podcasts, interviews, reels, YouTube content, short films, and production setups.
+          <div class="quick-line">Roll camera</div>
         </div>
-      </div>
-    </section>
+      </details>
+
+      <details>
+        <summary>
+          <span class="summary-left">
+            <span class="number">03</span>
+            Private Events
+          </span>
+          <span class="plus">+</span>
+        </summary>
+        <div class="accordion-body">
+          Birthdays, karaoke nights, mixers, celebrations, listening parties, family gatherings, and intimate experiences.
+          <div class="quick-line">Host the moment</div>
+        </div>
+      </details>
+
+      <details>
+        <summary>
+          <span class="summary-left">
+            <span class="number">04</span>
+            Brand Moments
+          </span>
+          <span class="plus">+</span>
+        </summary>
+        <div class="accordion-body">
+          Pop-ups, product launches, networking mixers, art showcases, brand activations, and community events.
+          <div class="quick-line">Make it official</div>
+        </div>
+      </details>
+
+      <details>
+        <summary>
+          <span class="summary-left">
+            <span class="number">05</span>
+            Live Energy
+          </span>
+          <span class="plus">+</span>
+        </summary>
+        <div class="accordion-body">
+          Small performances, jazz nights, spoken word, stage moments, artist showcases, and creative rehearsals.
+          <div class="quick-line">Set the tone</div>
+        </div>
+      </details>
+
+      <details>
+        <summary>
+          <span class="summary-left">
+            <span class="number">06</span>
+            Team Use
+          </span>
+          <span class="plus">+</span>
+        </summary>
+        <div class="accordion-body">
+          Workshops, castings, planning sessions, company functions, creative meetings, and team off-sites.
+          <div class="quick-line">Gather with purpose</div>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
 
     <section class="gallery-section" id="gallery">
       <div class="container">
