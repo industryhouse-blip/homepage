@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Main Venue | Industry House</title>
+  <meta name="description" content="The Main Venue at Industry House is a Culver City rental space for private events, company functions, karaoke, workshops, mixers, pop-ups, and gatherings with full bar availability for approved bookings." />
+
+  <style>
+:root {
+  --charcoal: #1F1B18;
+  --cream: #F4EBDD;
+  --walnut: #5A3524;
+  --brass: #B88A44;
+  --burgundy: #6E2424;
+  --green: #263F35;
+  --tan: #D8C3A5;
+  --white: #FFFDF8;
+  --radius: 24px;
+  --soft-shadow: 0 18px 45px rgba(31, 27, 24, 0.14);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: Georgia, "Times New Roman", serif;
+  background: var(--cream);
+  color: var(--charcoal);
+  line-height: 1.6;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.container {
+  width: min(1120px, 92%);
+  margin: 0 auto;
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.76rem;
+  color: var(--brass);
+  font-weight: 800;
+  margin-bottom: 0.7rem;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.section-title {
+  font-size: clamp(2.1rem, 4vw, 4rem);
+  line-height: 1.04;
+  margin-bottom: 1rem;
+  letter-spacing: -0.035em;
+}
+
+.section-copy {
+  font-size: 1.08rem;
+  max-width: 760px;
+  color: rgba(31, 27, 24, 0.82);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.95rem 1.35rem;
+  border-radius: 999px;
+  font-weight: 800;
+  font-size: 0.92rem;
+  border: 1px solid transparent;
+  transition: 0.25s ease;
+  font-family: Arial, Helvetica, sans-serif;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: var(--burgundy);
+  color: var(--cream);
+}
+
+.btn-primary:hover {
+  background: var(--charcoal);
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--cream);
+  border-color: rgba(244, 235, 221, 0.7);
+}
+
+.btn-secondary:hover {
+  background: var(--cream);
+  color: var(--charcoal);
+  transform: translateY(-2px);
+}
+
+.btn-dark {
+  background: var(--charcoal);
+  color: var(--cream);
+}
+
+.btn-dark:hover {
+  background: var(--burgundy);
+  transform: translateY(-2px);
+}
+
+.btn-light {
+  background: var(--cream);
+  color: var(--charcoal);
+}
+
+.btn-light:hover {
+  background: var(--brass);
+  color: var(--charcoal);
+  transform: translateY(-2px);
+}
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 99;
+  background: rgba(31, 27, 24, 0.95);
+  color: var(--cream);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(244, 235, 221, 0.12);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 78px;
+  gap: 2rem;
+}
+
+.brand {
+  font-size: 1.32rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.brand span {
+  color: var(--brass);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.9rem;
+}
+
+.nav-links a {
+  opacity: 0.9;
+}
+
+.nav-links a:hover {
+  color: var(--brass);
+}
+
+.mobile-note {
+  display: none;
+  font-size: 0.78rem;
+  color: var(--tan);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.hero {
+  min-height: calc(100vh - 78px);
+  background:
+    linear-gradient(rgba(31, 27, 24, 0.58), rgba(31, 27, 24, 0.76)),
+    url("images/industry-house-hero.jpg");
+  background-size: cover;
+  background-position: center;
+  color: var(--cream);
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero.short {
+  min-height: 62vh;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 120px;
+  background: linear-gradient(transparent, var(--cream));
+  opacity: 0.95;
+}
+
+.hero.no-fade::after {
+  display: none;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 860px;
+  padding: 5rem 0 7rem;
+}
+
+.hero.short .hero-content {
+  padding: 5rem 0;
+}
+
+.hero h1 {
+  font-size: clamp(3.8rem, 9vw, 8.6rem);
+  line-height: 0.88;
+  letter-spacing: -0.07em;
+  margin-bottom: 1.2rem;
+}
+
+.hero.short h1 {
+  font-size: clamp(3.2rem, 8vw, 7rem);
+}
+
+.hero .tagline {
+  font-size: clamp(1.45rem, 3vw, 2.25rem);
+  color: var(--brass);
+  margin-bottom: 1.2rem;
+  font-style: italic;
+}
+
+.hero p {
+  font-size: clamp(1.06rem, 2vw, 1.32rem);
+  max-width: 760px;
+  margin-bottom: 2rem;
+  color: rgba(244, 235, 221, 0.92);
+}
+
+.hero-buttons,
+.booking-buttons,
+.review-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+}
+
+section {
+  padding: 6rem 0;
+}
+
+.story-grid,
+.two-col,
+.contact-grid,
+.team-grid,
+.venue-grid,
+.split-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.story-grid {
+  gap: 3rem;
+  align-items: center;
+}
+
+.photo-card {
+  min-height: 470px;
+  background:
+    linear-gradient(rgba(38, 63, 53, 0.2), rgba(31, 27, 24, 0.35)),
+    url("images/industry-cafe-history.jpg");
+  background-size: cover;
+  background-position: center;
+  border-radius: var(--radius);
+  box-shadow: var(--soft-shadow);
+  overflow: hidden;
+  position: relative;
+}
+
+.photo-card .label {
+  position: absolute;
+  left: 1.2rem;
+  bottom: 1.2rem;
+  background: rgba(244, 235, 221, 0.92);
+  color: var(--charcoal);
+  padding: 0.75rem 1rem;
+  border-radius: 999px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.85rem;
+  font-weight: 800;
+}
+
+.story-content p {
+  margin-bottom: 1rem;
+  color: rgba(31, 27, 24, 0.82);
+  font-size: 1.06rem;
+}
+
+.highlight-box {
+  margin-top: 1.5rem;
+  padding: 1.25rem;
+  border-left: 4px solid var(--brass);
+  background: rgba(255, 253, 248, 0.7);
+  border-radius: 0 18px 18px 0;
+}
+
+.venues,
+.dark-section {
+  background: var(--charcoal);
+  color: var(--cream);
+}
+
+.venues .section-copy,
+.dark-section .section-copy {
+  color: rgba(244, 235, 221, 0.82);
+}
+
+.venue-grid {
+  margin-top: 3rem;
+}
+
+.venue-card {
+  background: rgba(244, 235, 221, 0.06);
+  border: 1px solid rgba(244, 235, 221, 0.14);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.22);
+  transition: 0.25s ease;
+}
+
+.venue-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(184, 138, 68, 0.55);
+}
+
+.venue-image {
+  min-height: 300px;
+  background-size: cover;
+  background-position: center;
+}
+
+.venue-image.main {
+  background-image:
+    linear-gradient(rgba(31, 27, 24, 0.18), rgba(31, 27, 24, 0.22)),
+    url("images/main-venue.jpg");
+}
+
+.venue-image.studio {
+  background-image:
+    linear-gradient(rgba(31, 27, 24, 0.18), rgba(31, 27, 24, 0.22)),
+    url("images/creative-studio.jpg");
+}
+
+.venue-body {
+  padding: 1.85rem;
+}
+
+.venue-body h3 {
+  font-size: 2rem;
+  margin-bottom: 0.7rem;
+}
+
+.venue-body p {
+  color: rgba(244, 235, 221, 0.84);
+  margin-bottom: 1.2rem;
+}
+
+.feature-list {
+  list-style: none;
+  display: grid;
+  gap: 0.5rem;
+  margin: 1.2rem 0 1.5rem;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.95rem;
+}
+
+.feature-list li::before {
+  content: "•";
+  color: var(--brass);
+  font-weight: 900;
+  margin-right: 0.55rem;
+}
+
+.uses-intro {
+  max-width: 850px;
+  margin-bottom: 2.6rem;
+}
+
+.uses-grid,
+.amenities-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+.amenities-grid {
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: 2.2rem;
+}
+
+.use-card,
+.amenity,
+.detail-card {
+  background: var(--white);
+  padding: 1.35rem;
+  border-radius: 18px;
+  box-shadow: 0 8px 24px rgba(31, 27, 24, 0.08);
+  border: 1px solid rgba(90, 53, 36, 0.08);
+  position: relative;
+  overflow: hidden;
+}
+
+.use-card {
+  min-height: 132px;
+}
+
+.use-card::before,
+.detail-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: var(--brass);
+}
+
+.use-card h3,
+.amenity h3,
+.detail-card h3 {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 0.65rem;
+}
+
+.use-card p,
+.amenity p,
+.detail-card p {
+  font-size: 0.94rem;
+  color: rgba(31, 27, 24, 0.72);
+}
+
+.gallery-section {
+  padding-top: 0;
+}
+
+.gallery-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  align-items: end;
+  margin-bottom: 2.4rem;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr 1fr;
+  grid-auto-rows: 225px;
+  gap: 1rem;
+}
+
+.gallery-item {
+  border-radius: 22px;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 12px 30px rgba(31, 27, 24, 0.12);
+  min-height: 220px;
+  position: relative;
+}
+
+.gallery-item::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(transparent, rgba(31, 27, 24, 0.22));
+}
+
+.gallery-item.large {
+  grid-row: span 2;
+}
+
+.g1 { background-image: url("images/gallery-1.jpg"); }
+.g2 { background-image: url("images/gallery-2.jpg"); }
+.g3 { background-image: url("images/gallery-3.jpg"); }
+.g4 { background-image: url("images/gallery-4.jpg"); }
+.g5 { background-image: url("images/gallery-5.jpg"); }
+
+.main-g1 { background-image: url("images/main-venue-1.jpg"); }
+.main-g2 { background-image: url("images/main-venue-2.jpg"); }
+.main-g3 { background-image: url("images/main-venue-3.jpg"); }
+.main-g4 { background-image: url("images/main-venue-4.jpg"); }
+.main-g5 { background-image: url("images/main-venue-5.jpg"); }
+
+.studio-g1 { background-image: url("images/creative-studio-1.jpg"); }
+.studio-g2 { background-image: url("images/creative-studio-2.jpg"); }
+.studio-g3 { background-image: url("images/creative-studio-3.jpg"); }
+.studio-g4 { background-image: url("images/creative-studio-4.jpg"); }
+.studio-g5 { background-image: url("images/creative-studio-5.jpg"); }
+
+.team {
+  background: var(--green);
+  color: var(--cream);
+}
+
+.team .section-copy {
+  color: rgba(244, 235, 221, 0.84);
+}
+
+.team-grid {
+  margin-top: 3rem;
+}
+
+.team-card {
+  background: rgba(244, 235, 221, 0.08);
+  border: 1px solid rgba(244, 235, 221, 0.14);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.portrait {
+  min-height: 350px;
+  background-size: cover;
+  background-position: center;
+}
+
+.portrait.owner {
+  background-image:
+    linear-gradient(rgba(31, 27, 24, 0.15), rgba(31, 27, 24, 0.2)),
+    url("images/owner.jpg");
+}
+
+.portrait.manager {
+  background-image:
+    linear-gradient(rgba(31, 27, 24, 0.15), rgba(31, 27, 24, 0.2)),
+    url("images/zerin-scales.jpg");
+}
+
+.team-body {
+  padding: 1.7rem;
+}
+
+.team-body h3 {
+  font-size: 1.8rem;
+  margin-bottom: 0.2rem;
+}
+
+.team-body .role {
+  color: var(--brass);
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 800;
+  margin-bottom: 1rem;
+}
+
+.team-body p {
+  color: rgba(244, 235, 221, 0.85);
+}
+
+.booking {
+  background:
+    linear-gradient(rgba(110, 36, 36, 0.88), rgba(31, 27, 24, 0.93)),
+    url("images/booking-background.jpg");
+  background-size: cover;
+  background-position: center;
+  color: var(--cream);
+  text-align: center;
+}
+
+.booking .section-copy {
+  margin: 0 auto;
+  color: rgba(244, 235, 221, 0.86);
+}
+
+.booking-buttons,
+.review-buttons {
+  justify-content: center;
+  margin-top: 2.2rem;
+}
+
+.review-panel {
+  margin: 3rem auto 0;
+  width: min(850px, 100%);
+  background: rgba(244, 235, 221, 0.1);
+  border: 1px solid rgba(244, 235, 221, 0.18);
+  border-radius: var(--radius);
+  padding: 2rem;
+}
+
+.review-panel h3 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.review-panel p {
+  color: rgba(244, 235, 221, 0.84);
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.contact {
+  background: var(--charcoal);
+  color: var(--cream);
+}
+
+.contact .section-copy {
+  color: rgba(244, 235, 221, 0.82);
+}
+
+.contact-card {
+  background: rgba(244, 235, 221, 0.08);
+  border: 1px solid rgba(244, 235, 221, 0.14);
+  border-radius: var(--radius);
+  padding: 2rem;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.contact-card p {
+  margin-bottom: 0.8rem;
+  color: rgba(244, 235, 221, 0.85);
+}
+
+.contact-card strong {
+  color: var(--brass);
+}
+
+.info-panel {
+  background: var(--cream);
+  border-radius: var(--radius);
+  padding: 2rem;
+  border: 1px solid rgba(90, 53, 36, 0.1);
+  box-shadow: var(--soft-shadow);
+}
+
+.info-panel h3 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+.info-panel ul {
+  padding-left: 1.2rem;
+  color: rgba(31, 27, 24, 0.8);
+}
+
+.info-panel li {
+  margin-bottom: 0.6rem;
+}
+
+.rules {
+  background: var(--green);
+  color: var(--cream);
+}
+
+.rules .section-copy {
+  color: rgba(244, 235, 221, 0.84);
+}
+
+.rules-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-top: 2.2rem;
+}
+
+.rule-card {
+  background: rgba(244, 235, 221, 0.08);
+  border: 1px solid rgba(244, 235, 221, 0.14);
+  border-radius: 18px;
+  padding: 1.2rem;
+  font-family: Arial, Helvetica, sans-serif;
+  color: rgba(244, 235, 221, 0.88);
+}
+
+.details-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: 2.2rem;
+}
+
+
+.main-g6 { background-image: url("images/main-venue-6.jpg"); }
+.main-g7 { background-image: url("images/main-venue-7.jpg"); }
+.main-g8 { background-image: url("images/main-venue-8.jpg"); }
+.main-g9 { background-image: url("images/main-venue-9.jpg"); }
+.main-g10 { background-image: url("images/main-venue-10.jpg"); }
+
+
+.reveal-photo {
+  opacity: 0;
+  transform: translateY(34px);
+  transition:
+    opacity 0.85s ease,
+    transform 0.85s ease;
+  transition-delay: var(--delay, 0s);
+}
+
+.reveal-photo.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+footer {
+  background: #14110F;
+  color: rgba(244, 235, 221, 0.75);
+  padding: 2rem 0;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.9rem;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 950px) {
+  .nav-links {
+    display: none;
+  }
+
+  .mobile-note {
+    display: block;
+  }
+
+  .story-grid,
+  .venue-grid,
+  .team-grid,
+  .contact-grid,
+  .two-col,
+  .split-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .uses-grid,
+  .amenities-grid,
+  .details-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .gallery-header {
+    display: block;
+  }
+
+  .gallery-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  section {
+    padding: 4.5rem 0;
+  }
+
+  .hero h1 {
+    font-size: 4rem;
+  }
+
+  .hero.short h1 {
+    font-size: 3.5rem;
+  }
+
+  .uses-grid,
+  .amenities-grid,
+  .details-grid,
+  .gallery-grid,
+  .rules-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .gallery-item.large {
+    grid-row: span 1;
+  }
+
+  .photo-card,
+  .portrait {
+    min-height: 320px;
+  }
+
+  .btn {
+    width: 100%;
+  }
+}
+</style>
+</head>
+
+<body>
+  
+<header>
+  <div class="container nav">
+    <a href="index.html" class="brand">Industry <span>House</span></a>
+
+    <nav class="nav-links" aria-label="Main navigation">
+      <a href="index.html#story">Story</a>
+      <a href="index.html#spaces">Spaces</a>
+      <a href="index.html#uses">Uses</a>
+      <a href="amenities.html">Amenities & Access</a>
+      <a href="index.html#team">Team</a>
+      <a href="index.html#book">Book</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+
+    <div class="mobile-note">Create. Gather. Inspire.</div>
+  </div>
+</header>
+
+
+  <main>
+
+    <section class="hero short no-fade" style='background: linear-gradient(rgba(31, 27, 24, 0.58), rgba(31, 27, 24, 0.76)), url("images/main-venue-hero.jpg"); background-size: cover; background-position: center;'>
+      <div class="container hero-content">
+        <div class="eyebrow">Industry House Space</div>
+        <h1>Main Venue</h1>
+        <p>A warm, character-filled venue for private events, company functions, karaoke, mixers, workshops, pop-ups, brand activations, and community gatherings.</p>
+
+        <div class="hero-buttons">
+          <a href="#photos" class="btn btn-primary">View Photos</a>
+          <a href="#book" class="btn btn-secondary">Book This Space</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="photos">
+      <div class="container">
+        <div class="gallery-header">
+          <div>
+            <div class="eyebrow">Photos</div>
+            <h2 class="section-title">See the space.</h2>
+          </div>
+          <p class="section-copy">
+            Add up to 10 real photos of this space here. Show wide shots, detail shots, setup options, textures, and atmosphere.
+          </p>
+        </div>
+
+        <div class="gallery-grid">
+          <div class="gallery-item reveal-photo large main-g1" style="--delay: 0.00s;" aria-label="Main Venue photo 1"></div>
+          <div class="gallery-item reveal-photo main-g2" style="--delay: 0.07s;" aria-label="Main Venue photo 2"></div>
+          <div class="gallery-item reveal-photo main-g3" style="--delay: 0.14s;" aria-label="Main Venue photo 3"></div>
+          <div class="gallery-item reveal-photo main-g4" style="--delay: 0.21s;" aria-label="Main Venue photo 4"></div>
+          <div class="gallery-item reveal-photo main-g5" style="--delay: 0.28s;" aria-label="Main Venue photo 5"></div>
+          <div class="gallery-item reveal-photo main-g6" style="--delay: 0.35s;" aria-label="Main Venue photo 6"></div>
+          <div class="gallery-item reveal-photo main-g7" style="--delay: 0.42s;" aria-label="Main Venue photo 7"></div>
+          <div class="gallery-item reveal-photo large main-g8" style="--delay: 0.42s;" aria-label="Main Venue photo 8"></div>
+          <div class="gallery-item reveal-photo main-g9" style="--delay: 0.42s;" aria-label="Main Venue photo 9"></div>
+          <div class="gallery-item reveal-photo main-g10" style="--delay: 0.42s;" aria-label="Main Venue photo 10"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="dark-section">
+      <div class="container">
+        <div class="eyebrow">Good For</div>
+        <h2 class="section-title">A flexible venue for gatherings with personality.</h2>
+
+        <div class="details-grid">
+          <div class="detail-card">
+            <h3>Private Events</h3>
+            <p>Celebrations, dinners, receptions, birthdays, and intimate gatherings.</p>
+          </div>
+          <div class="detail-card">
+            <h3>Company Functions</h3>
+            <p>Team gatherings, client mixers, networking events, and business celebrations.</p>
+          </div>
+          <div class="detail-card">
+            <h3>Karaoke</h3>
+            <p>Private karaoke nights, social events, and music-centered gatherings.</p>
+          </div>
+          <div class="detail-card">
+            <h3>Full Bar</h3>
+            <p>Available for approved bookings and qualifying private events.</p>
+          </div>
+          <div class="detail-card">
+            <h3>Pop-Ups</h3>
+            <p>Product launches, art showcases, vendor events, and brand activations.</p>
+          </div>
+          <div class="detail-card">
+            <h3>Workshops</h3>
+            <p>Classes, panels, creative sessions, and community programs.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="booking" id="book">
+      <div class="container">
+        <div class="eyebrow">Book Main Venue</div>
+        <h2 class="section-title">Ready to reserve this space?</h2>
+        <p class="section-copy">
+          Book directly or connect through Peerspace, Giggster, or Spacer once your listings are live.
+        </p>
+
+        <div class="booking-buttons">
+          <a href="mailto:bookings@theindustryhouse.com?subject=Industry%20House%20Main%20Venue%20Inquiry" class="btn btn-primary">Book Direct</a>
+          <a href="#" class="btn btn-secondary">Book on Peerspace</a>
+          <a href="#" class="btn btn-secondary">Book on Giggster</a>
+          <a href="#" class="btn btn-secondary">Book on Spacer</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  
+<footer>
+  <div class="container footer-content">
+    <div>© <span id="year"></span> Industry House. All rights reserved.</div>
+    <div>Create. Gather. Inspire.</div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+
+<script>
+  const revealPhotos = document.querySelectorAll(".reveal-photo");
+
+  const photoObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("show");
+        photoObserver.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.18
+  });
+
+  revealPhotos.forEach((photo) => {
+    photoObserver.observe(photo);
+  });
+</script>
+
+</body>
+</html>

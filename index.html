@@ -1,0 +1,1124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Industry House | Creative Rental Spaces in Culver City</title>
+  <meta name="description" content="Industry House offers creative rental spaces in Culver City for photography, film productions, music videos, podcasts, workshops, company functions, and private events." />
+
+  <style>
+:root {
+  --charcoal: #1F1B18;
+  --cream: #F4EBDD;
+  --walnut: #5A3524;
+  --brass: #B88A44;
+  --burgundy: #6E2424;
+  --green: #263F35;
+  --tan: #D8C3A5;
+  --white: #FFFDF8;
+  --radius: 24px;
+  --soft-shadow: 0 18px 45px rgba(31, 27, 24, 0.14);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: Georgia, "Times New Roman", serif;
+  background: var(--cream);
+  color: var(--charcoal);
+  line-height: 1.6;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.container {
+  width: min(1120px, 92%);
+  margin: 0 auto;
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.76rem;
+  color: var(--brass);
+  font-weight: 800;
+  margin-bottom: 0.7rem;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.section-title {
+  font-size: clamp(2.1rem, 4vw, 4rem);
+  line-height: 1.04;
+  margin-bottom: 1rem;
+  letter-spacing: -0.035em;
+}
+
+.section-copy {
+  font-size: 1.08rem;
+  max-width: 760px;
+  color: rgba(31, 27, 24, 0.82);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.95rem 1.35rem;
+  border-radius: 999px;
+  font-weight: 800;
+  font-size: 0.92rem;
+  border: 1px solid transparent;
+  transition: 0.25s ease;
+  font-family: Arial, Helvetica, sans-serif;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: var(--burgundy);
+  color: var(--cream);
+}
+
+.btn-primary:hover {
+  background: var(--charcoal);
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--cream);
+  border-color: rgba(244, 235, 221, 0.7);
+}
+
+.btn-secondary:hover {
+  background: var(--cream);
+  color: var(--charcoal);
+  transform: translateY(-2px);
+}
+
+.btn-dark {
+  background: var(--charcoal);
+  color: var(--cream);
+}
+
+.btn-dark:hover {
+  background: var(--burgundy);
+  transform: translateY(-2px);
+}
+
+.btn-light {
+  background: var(--cream);
+  color: var(--charcoal);
+}
+
+.btn-light:hover {
+  background: var(--brass);
+  color: var(--charcoal);
+  transform: translateY(-2px);
+}
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 99;
+  background: rgba(31, 27, 24, 0.95);
+  color: var(--cream);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(244, 235, 221, 0.12);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 78px;
+  gap: 2rem;
+}
+
+.brand {
+  font-size: 1.32rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.brand span {
+  color: var(--brass);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.9rem;
+}
+
+.nav-links a {
+  opacity: 0.9;
+}
+
+.nav-links a:hover {
+  color: var(--brass);
+}
+
+.mobile-note {
+  display: none;
+  font-size: 0.78rem;
+  color: var(--tan);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.hero {
+  min-height: calc(100vh - 78px);
+  background:
+    linear-gradient(rgba(31, 27, 24, 0.58), rgba(31, 27, 24, 0.76)),
+    url("images/industry-house-hero.jpg");
+  background-size: cover;
+  background-position: center;
+  color: var(--cream);
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero.short {
+  min-height: 62vh;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 120px;
+  background: linear-gradient(transparent, var(--cream));
+  opacity: 0.95;
+}
+
+.hero.no-fade::after {
+  display: none;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 860px;
+  padding: 5rem 0 7rem;
+}
+
+.hero.short .hero-content {
+  padding: 5rem 0;
+}
+
+.hero h1 {
+  font-size: clamp(3.8rem, 9vw, 8.6rem);
+  line-height: 0.88;
+  letter-spacing: -0.07em;
+  margin-bottom: 1.2rem;
+}
+
+.hero.short h1 {
+  font-size: clamp(3.2rem, 8vw, 7rem);
+}
+
+.hero .tagline {
+  font-size: clamp(1.45rem, 3vw, 2.25rem);
+  color: var(--brass);
+  margin-bottom: 1.2rem;
+  font-style: italic;
+}
+
+.hero p {
+  font-size: clamp(1.06rem, 2vw, 1.32rem);
+  max-width: 760px;
+  margin-bottom: 2rem;
+  color: rgba(244, 235, 221, 0.92);
+}
+
+.hero-buttons,
+.booking-buttons,
+.review-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+}
+
+section {
+  padding: 6rem 0;
+}
+
+.story-grid,
+.two-col,
+.contact-grid,
+.team-grid,
+.venue-grid,
+.split-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.story-grid {
+  gap: 3rem;
+  align-items: center;
+}
+
+.photo-card {
+  min-height: 470px;
+  background:
+    linear-gradient(rgba(38, 63, 53, 0.2), rgba(31, 27, 24, 0.35)),
+    url("images/industry-cafe-history.jpg");
+  background-size: cover;
+  background-position: center;
+  border-radius: var(--radius);
+  box-shadow: var(--soft-shadow);
+  overflow: hidden;
+  position: relative;
+}
+
+.photo-card .label {
+  position: absolute;
+  left: 1.2rem;
+  bottom: 1.2rem;
+  background: rgba(244, 235, 221, 0.92);
+  color: var(--charcoal);
+  padding: 0.75rem 1rem;
+  border-radius: 999px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.85rem;
+  font-weight: 800;
+}
+
+.story-content p {
+  margin-bottom: 1rem;
+  color: rgba(31, 27, 24, 0.82);
+  font-size: 1.06rem;
+}
+
+.highlight-box {
+  margin-top: 1.5rem;
+  padding: 1.25rem;
+  border-left: 4px solid var(--brass);
+  background: rgba(255, 253, 248, 0.7);
+  border-radius: 0 18px 18px 0;
+}
+
+.venues,
+.dark-section {
+  background: var(--charcoal);
+  color: var(--cream);
+}
+
+.venues .section-copy,
+.dark-section .section-copy {
+  color: rgba(244, 235, 221, 0.82);
+}
+
+.venue-grid {
+  margin-top: 3rem;
+}
+
+.venue-card {
+  background: rgba(244, 235, 221, 0.06);
+  border: 1px solid rgba(244, 235, 221, 0.14);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.22);
+  transition: 0.25s ease;
+}
+
+.venue-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(184, 138, 68, 0.55);
+}
+
+.venue-image {
+  min-height: 300px;
+  background-size: cover;
+  background-position: center;
+}
+
+.venue-image.main {
+  background-image:
+    linear-gradient(rgba(31, 27, 24, 0.18), rgba(31, 27, 24, 0.22)),
+    url("images/main-venue.jpg");
+}
+
+.venue-image.studio {
+  background-image:
+    linear-gradient(rgba(31, 27, 24, 0.18), rgba(31, 27, 24, 0.22)),
+    url("images/creative-studio.jpg");
+}
+
+.venue-body {
+  padding: 1.85rem;
+}
+
+.venue-body h3 {
+  font-size: 2rem;
+  margin-bottom: 0.7rem;
+}
+
+.venue-body p {
+  color: rgba(244, 235, 221, 0.84);
+  margin-bottom: 1.2rem;
+}
+
+.feature-list {
+  list-style: none;
+  display: grid;
+  gap: 0.5rem;
+  margin: 1.2rem 0 1.5rem;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.95rem;
+}
+
+.feature-list li::before {
+  content: "•";
+  color: var(--brass);
+  font-weight: 900;
+  margin-right: 0.55rem;
+}
+
+.uses-intro {
+  max-width: 850px;
+  margin-bottom: 2.6rem;
+}
+
+.uses-grid,
+.amenities-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+.amenities-grid {
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: 2.2rem;
+}
+
+.use-card,
+.amenity,
+.detail-card {
+  background: var(--white);
+  padding: 1.35rem;
+  border-radius: 18px;
+  box-shadow: 0 8px 24px rgba(31, 27, 24, 0.08);
+  border: 1px solid rgba(90, 53, 36, 0.08);
+  position: relative;
+  overflow: hidden;
+}
+
+.use-card {
+  min-height: 132px;
+}
+
+.use-card::before,
+.detail-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: var(--brass);
+}
+
+.use-card h3,
+.amenity h3,
+.detail-card h3 {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 0.65rem;
+}
+
+.use-card p,
+.amenity p,
+.detail-card p {
+  font-size: 0.94rem;
+  color: rgba(31, 27, 24, 0.72);
+}
+
+.gallery-section {
+  padding-top: 0;
+}
+
+.gallery-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  align-items: end;
+  margin-bottom: 2.4rem;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr 1fr;
+  grid-auto-rows: 225px;
+  gap: 1rem;
+}
+
+.gallery-item {
+  border-radius: 22px;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 12px 30px rgba(31, 27, 24, 0.12);
+  min-height: 220px;
+  position: relative;
+}
+
+.gallery-item::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(transparent, rgba(31, 27, 24, 0.22));
+}
+
+.gallery-item.large {
+  grid-row: span 2;
+}
+
+.g1 { background-image: url("images/gallery-1.jpg"); }
+.g2 { background-image: url("images/gallery-2.jpg"); }
+.g3 { background-image: url("images/gallery-3.jpg"); }
+.g4 { background-image: url("images/gallery-4.jpg"); }
+.g5 { background-image: url("images/gallery-5.jpg"); }
+
+.main-g1 { background-image: url("images/main-venue-1.jpg"); }
+.main-g2 { background-image: url("images/main-venue-2.jpg"); }
+.main-g3 { background-image: url("images/main-venue-3.jpg"); }
+.main-g4 { background-image: url("images/main-venue-4.jpg"); }
+.main-g5 { background-image: url("images/main-venue-5.jpg"); }
+
+.studio-g1 { background-image: url("images/creative-studio-1.jpg"); }
+.studio-g2 { background-image: url("images/creative-studio-2.jpg"); }
+.studio-g3 { background-image: url("images/creative-studio-3.jpg"); }
+.studio-g4 { background-image: url("images/creative-studio-4.jpg"); }
+.studio-g5 { background-image: url("images/creative-studio-5.jpg"); }
+
+.team {
+  background: var(--green);
+  color: var(--cream);
+}
+
+.team .section-copy {
+  color: rgba(244, 235, 221, 0.84);
+}
+
+.team-grid {
+  margin-top: 3rem;
+}
+
+.team-card {
+  background: rgba(244, 235, 221, 0.08);
+  border: 1px solid rgba(244, 235, 221, 0.14);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.portrait {
+  min-height: 350px;
+  background-size: cover;
+  background-position: center;
+}
+
+.portrait.owner {
+  background-image:
+    linear-gradient(rgba(31, 27, 24, 0.15), rgba(31, 27, 24, 0.2)),
+    url("images/owner.jpg");
+}
+
+.portrait.manager {
+  background-image:
+    linear-gradient(rgba(31, 27, 24, 0.15), rgba(31, 27, 24, 0.2)),
+    url("images/zerin-scales.jpg");
+}
+
+.team-body {
+  padding: 1.7rem;
+}
+
+.team-body h3 {
+  font-size: 1.8rem;
+  margin-bottom: 0.2rem;
+}
+
+.team-body .role {
+  color: var(--brass);
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 800;
+  margin-bottom: 1rem;
+}
+
+.team-body p {
+  color: rgba(244, 235, 221, 0.85);
+}
+
+.booking {
+  background:
+    linear-gradient(rgba(110, 36, 36, 0.88), rgba(31, 27, 24, 0.93)),
+    url("images/booking-background.jpg");
+  background-size: cover;
+  background-position: center;
+  color: var(--cream);
+  text-align: center;
+}
+
+.booking .section-copy {
+  margin: 0 auto;
+  color: rgba(244, 235, 221, 0.86);
+}
+
+.booking-buttons,
+.review-buttons {
+  justify-content: center;
+  margin-top: 2.2rem;
+}
+
+.review-panel {
+  margin: 3.5rem auto 0;
+  width: min(920px, 100%);
+  background:
+    radial-gradient(circle at top left, rgba(244, 235, 221, 0.22), transparent 34%),
+    linear-gradient(135deg, var(--brass), var(--burgundy));
+  border: 2px solid rgba(244, 235, 221, 0.42);
+  border-radius: 32px;
+  padding: 2.6rem;
+  box-shadow: 0 24px 65px rgba(0, 0, 0, 0.28);
+  position: relative;
+  overflow: hidden;
+}
+
+.review-panel::before {
+  content: "★★★★★";
+  display: block;
+  font-family: Arial, Helvetica, sans-serif;
+  letter-spacing: 0.22em;
+  color: var(--cream);
+  font-size: 1rem;
+  font-weight: 900;
+  margin-bottom: 1rem;
+}
+
+.review-panel h3 {
+  font-size: clamp(2.3rem, 5vw, 4.3rem);
+  line-height: 0.95;
+  margin-bottom: 0.9rem;
+  letter-spacing: -0.05em;
+}
+
+.review-panel p {
+  color: rgba(244, 235, 221, 0.92);
+  max-width: 680px;
+  margin: 0 auto;
+  font-size: 1.08rem;
+}
+
+.review-panel .review-kicker {
+  font-family: Arial, Helvetica, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.78rem;
+  font-weight: 900;
+  color: var(--cream);
+  margin-bottom: 0.55rem;
+}
+
+.contact {
+  background: var(--charcoal);
+  color: var(--cream);
+}
+
+.contact .section-copy {
+  color: rgba(244, 235, 221, 0.82);
+}
+
+.contact-card {
+  background: rgba(244, 235, 221, 0.08);
+  border: 1px solid rgba(244, 235, 221, 0.14);
+  border-radius: var(--radius);
+  padding: 2rem;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.contact-card p {
+  margin-bottom: 0.8rem;
+  color: rgba(244, 235, 221, 0.85);
+}
+
+.contact-card strong {
+  color: var(--brass);
+}
+
+.info-panel {
+  background: var(--cream);
+  border-radius: var(--radius);
+  padding: 2rem;
+  border: 1px solid rgba(90, 53, 36, 0.1);
+  box-shadow: var(--soft-shadow);
+}
+
+.info-panel h3 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+.info-panel ul {
+  padding-left: 1.2rem;
+  color: rgba(31, 27, 24, 0.8);
+}
+
+.info-panel li {
+  margin-bottom: 0.6rem;
+}
+
+.rules {
+  background: var(--green);
+  color: var(--cream);
+}
+
+.rules .section-copy {
+  color: rgba(244, 235, 221, 0.84);
+}
+
+.rules-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-top: 2.2rem;
+}
+
+.rule-card {
+  background: rgba(244, 235, 221, 0.08);
+  border: 1px solid rgba(244, 235, 221, 0.14);
+  border-radius: 18px;
+  padding: 1.2rem;
+  font-family: Arial, Helvetica, sans-serif;
+  color: rgba(244, 235, 221, 0.88);
+}
+
+.details-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: 2.2rem;
+}
+
+footer {
+  background: #14110F;
+  color: rgba(244, 235, 221, 0.75);
+  padding: 2rem 0;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.9rem;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 950px) {
+  .nav-links {
+    display: none;
+  }
+
+  .mobile-note {
+    display: block;
+  }
+
+  .story-grid,
+  .venue-grid,
+  .team-grid,
+  .contact-grid,
+  .two-col,
+  .split-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .uses-grid,
+  .amenities-grid,
+  .details-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .gallery-header {
+    display: block;
+  }
+
+  .gallery-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  section {
+    padding: 4.5rem 0;
+  }
+
+  .hero h1 {
+    font-size: 4rem;
+  }
+
+  .hero.short h1 {
+    font-size: 3.5rem;
+  }
+
+  .uses-grid,
+  .amenities-grid,
+  .details-grid,
+  .gallery-grid,
+  .rules-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .gallery-item.large {
+    grid-row: span 1;
+  }
+
+  .photo-card,
+  .portrait {
+    min-height: 320px;
+  }
+
+  .btn {
+    width: 100%;
+  }
+}
+</style>
+</head>
+
+<body>
+  
+<header>
+  <div class="container nav">
+    <a href="index.html" class="brand">Industry <span>House</span></a>
+
+    <nav class="nav-links" aria-label="Main navigation">
+      <a href="index.html#story">Story</a>
+      <a href="index.html#spaces">Spaces</a>
+      <a href="index.html#uses">Uses</a>
+      <a href="amenities.html">Amenities & Access</a>
+      <a href="index.html#team">Team</a>
+      <a href="index.html#book">Book</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+
+    <div class="mobile-note">Create. Gather. Inspire.</div>
+  </div>
+</header>
+
+
+  <main>
+
+    <section class="hero" id="home">
+      <div class="container hero-content">
+        <div class="eyebrow">Culver City Creative Rental Spaces</div>
+        <h1>Industry House</h1>
+        <div class="tagline">Create. Gather. Inspire.</div>
+        <p>
+          Creative rental spaces in Culver City for photography, film productions,
+          music videos, podcasts, workshops, company functions, and private events.
+        </p>
+
+        <div class="hero-buttons">
+          <a href="#book" class="btn btn-primary">Book a Space</a>
+          <a href="#spaces" class="btn btn-secondary">Explore the Spaces</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="story">
+      <div class="container story-grid">
+        <div class="photo-card">
+          <div class="label">Rooted in Industry Café & Jazz</div>
+        </div>
+
+        <div class="story-content">
+          <div class="eyebrow">Our Story</div>
+          <h2 class="section-title">A creative home built from culture, music, and community.</h2>
+
+          <p>
+            Before Industry House, there was Industry Café & Jazz — a Culver City gathering
+            place known for food, live music, creative energy, and community.
+          </p>
+
+          <p>
+            Industry House continues that legacy by opening the space to photographers,
+            filmmakers, brands, artists, entrepreneurs, and private event hosts looking
+            for a space with warmth, character, and purpose.
+          </p>
+
+          <div class="highlight-box">
+            <strong>More than a venue.</strong>
+            Industry House is a place to create meaningful work, gather with intention,
+            and bring stories to life.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="venues" id="spaces">
+      <div class="container">
+        <div class="eyebrow">Bookable Spaces</div>
+        <h2 class="section-title">Two flexible spaces. One creative destination.</h2>
+        <p class="section-copy">
+          Whether you are hosting a private event, filming a music video, producing content,
+          recording a podcast, hosting a company function, or leading a workshop, Industry House offers
+          flexible rental options for creators and community.
+        </p>
+
+        <div class="venue-grid">
+          <a class="venue-card" href="main-venue.html" aria-label="View Main Venue page">
+            <div class="venue-image main" role="img" aria-label="Main event venue"></div>
+            <div class="venue-body">
+              <h3>Main Venue</h3>
+              <p>
+                A warm, character-filled space for private events, karaoke, mixers, workshops,
+                brand activations, community gatherings, and intimate celebrations.
+              </p>
+
+              <ul class="feature-list">
+                <li>Private events and celebrations</li>
+                <li>Karaoke nights and social gatherings</li>
+                <li>Full bar available for approved bookings</li>
+                <li>Networking mixers and business gatherings</li>
+                <li>Workshops, classes, panels, pop-ups, and showcases</li>
+              </ul>
+
+              <span class="btn btn-primary">View Main Venue</span>
+            </div>
+          </a>
+
+          <a class="venue-card" href="creative-studio.html" aria-label="View Creative Studio page">
+            <div class="venue-image studio" role="img" aria-label="Creative studio and production space"></div>
+            <div class="venue-body">
+              <h3>Creative Studio</h3>
+              <p>
+                A production-friendly back room for photography, film, podcasts,
+                music videos, content creation, casting calls, and creative meetings.
+              </p>
+
+              <ul class="feature-list">
+                <li>Photography and headshot sessions</li>
+                <li>Film productions and music videos</li>
+                <li>Podcast recordings and interviews</li>
+                <li>Content creation and brand campaigns</li>
+              </ul>
+
+              <span class="btn btn-primary">View Creative Studio</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="uses">
+      <div class="container">
+        <div class="uses-intro">
+          <div class="eyebrow">Perfect For</div>
+          <h2 class="section-title">Made for creators, brands, artists, businesses, and community.</h2>
+          <p class="section-copy">
+            Industry House supports productions, gatherings, creative sessions, and experiences
+            that need more character than a blank room.
+          </p>
+        </div>
+
+        <div class="uses-grid">
+          <div class="use-card">
+            <h3>Photography</h3>
+            <p>Headshots, portraits, brand campaigns, product shoots, and editorial sessions.</p>
+          </div>
+
+          <div class="use-card">
+            <h3>Film</h3>
+            <p>Short films, interviews, creative productions, campaign visuals, and video content.</p>
+          </div>
+
+          <div class="use-card">
+            <h3>Music Videos</h3>
+            <p>Artist visuals, live performance concepts, promotional reels, and content shoots.</p>
+          </div>
+
+          <div class="use-card">
+            <h3>Podcasts</h3>
+            <p>Interviews, creator conversations, branded shows, and intimate recording setups.</p>
+          </div>
+
+          <div class="use-card">
+            <h3>Workshops</h3>
+            <p>Classes, panels, creative lessons, business gatherings, and skill-building sessions.</p>
+          </div>
+
+          <div class="use-card">
+            <h3>Private Events</h3>
+            <p>Birthdays, celebrations, dinners, receptions, mixers, and small gatherings.</p>
+          </div>
+
+          <div class="use-card">
+            <h3>Company Functions</h3>
+            <p>Team gatherings, networking events, client mixers, business celebrations, and professional meetups.</p>
+          </div>
+
+          <div class="use-card">
+            <h3>Community</h3>
+            <p>Networking events, cultural programs, meetups, and gatherings with purpose.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="gallery-section" id="gallery">
+      <div class="container">
+        <div class="gallery-header">
+          <div>
+            <div class="eyebrow">See the Space</div>
+            <h2 class="section-title">Warm. Flexible. Full of character.</h2>
+          </div>
+          <p class="section-copy">
+            Replace these placeholders with real photos of the café, back room, production setups,
+            events, and detail shots that show the texture of Industry House.
+          </p>
+        </div>
+
+        <div class="gallery-grid">
+          <div class="gallery-item large g1" aria-label="Gallery image one"></div>
+          <div class="gallery-item g2" aria-label="Gallery image two"></div>
+          <div class="gallery-item g3" aria-label="Gallery image three"></div>
+          <div class="gallery-item g4" aria-label="Gallery image four"></div>
+          <div class="gallery-item large g5" aria-label="Gallery image five"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="team" id="team">
+      <div class="container">
+        <div class="eyebrow">Owner & Management</div>
+        <h2 class="section-title">The people behind the space.</h2>
+        <p class="section-copy">
+          Industry House is guided by the history of Industry Café & Jazz and managed
+          with a focus on professionalism, hospitality, and creative collaboration.
+        </p>
+
+        <div class="team-grid">
+          <article class="team-card">
+            <div class="portrait owner" role="img" aria-label="Owner portrait"></div>
+            <div class="team-body">
+              <h3>Owner Name</h3>
+              <div class="role">Owner, Industry Café & Jazz</div>
+              <p>
+                Add the owner’s story here. This section should share the history of
+                Industry Café & Jazz, the vision behind the space, and why opening the
+                venue for rentals is the next chapter of the business.
+              </p>
+            </div>
+          </article>
+
+          <article class="team-card">
+            <div class="portrait manager" role="img" aria-label="Zerin Scales portrait"></div>
+            <div class="team-body">
+              <h3>Zerin Scales</h3>
+              <div class="role">Venue Management & Creative Partnerships</div>
+              <p>
+                Zerin Scales supports Industry House’s booking experience, creative partnerships,
+                production coordination, and guest communication. His focus is helping photographers,
+                filmmakers, brands, artists, and community organizations use the space with clarity,
+                professionalism, and intention.
+              </p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="booking" id="book">
+      <div class="container">
+        <div class="eyebrow">Book Industry House</div>
+        <h2 class="section-title">Ready to create, gather, or host?</h2>
+        <p class="section-copy">
+          Book directly through Industry House or connect with us through Peerspace,
+          Giggster, or Spacer. Replace these links once your listings are live.
+        </p>
+
+        <div class="booking-buttons">
+          <a href="mailto:bookings@theindustryhouse.com?subject=Industry%20House%20Booking%20Inquiry" class="btn btn-primary">Book Direct</a>
+          <a href="#" class="btn btn-secondary">Book on Peerspace</a>
+          <a href="#" class="btn btn-secondary">Book on Giggster</a>
+          <a href="#" class="btn btn-secondary">Book on Spacer</a>
+        </div>
+
+        <div class="review-panel">
+          <div class="review-kicker">Loved the experience?</div>
+          <h3>Leave a Review</h3>
+          <p>
+            Hosted an event, booked a production, or visited Industry Café & Jazz?
+            Share your experience and help the next creator, host, or guest discover Industry House.
+          </p>
+
+          <div class="review-buttons">
+            <a href="https://www.yelp.com/biz/industry-cafe-and-jazz-culver-city" class="btn btn-light" target="_blank" rel="noopener">Review on Yelp</a>
+            <a href="#" class="btn btn-secondary">Review on Peerspace</a>
+            <a href="#" class="btn btn-secondary">Review on Giggster</a>
+            <a href="#" class="btn btn-secondary">Review on Spacer</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="container contact-grid">
+        <div>
+          <div class="eyebrow">Contact</div>
+          <h2 class="section-title">Let’s find the right space for your booking.</h2>
+          <p class="section-copy">
+            Not sure which space fits your shoot, event, workshop, or production?
+            Reach out and we’ll help you plan the right setup.
+          </p>
+        </div>
+
+        <div class="contact-card">
+          <p><strong>Location:</strong> Culver City, CA</p>
+          <p><strong>Email:</strong> bookings@theindustryhouse.com</p>
+          <p><strong>Phone:</strong> Add phone number here</p>
+          <p><strong>Instagram:</strong> @addhandlehere</p>
+          <p><strong>Booking:</strong> Direct, Peerspace, Giggster, and Spacer</p>
+
+          <br />
+
+          <a href="mailto:bookings@theindustryhouse.com?subject=Industry%20House%20Booking%20Inquiry" class="btn btn-primary">Send Booking Inquiry</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  
+<footer>
+  <div class="container footer-content">
+    <div>© <span id="year"></span> Industry House. All rights reserved.</div>
+    <div>Create. Gather. Inspire.</div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
