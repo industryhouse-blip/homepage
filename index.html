@@ -1186,6 +1186,88 @@ footer {
 .hero .eyebrow {
   color: var(--cream);
 }    
+    /* Hero split layout with photos */
+.hero {
+  min-height: calc(100vh - 78px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 110px 6vw 80px;
+}
+
+.hero-content.hero-split {
+  width: 100%;
+  max-width: 1250px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 56px;
+  padding: 0;
+}
+
+.hero-text {
+  text-align: left;
+  max-width: 620px;
+}
+
+.hero-text h1 {
+  margin-bottom: 20px;
+}
+
+.hero-text p {
+  margin-bottom: 28px;
+}
+
+.hero-buttons {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.hero-photo-stack {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 230px 230px;
+  gap: 16px;
+}
+
+.hero-photo-stack img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 18px;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.35);
+}
+
+.hero-photo-stack img:first-child {
+  grid-row: span 2;
+}
+
+@media (max-width: 850px) {
+  .hero {
+    padding: 100px 22px 60px;
+  }
+
+  .hero-content.hero-split {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+
+  .hero-text {
+    text-align: center;
+    margin: 0 auto;
+  }
+
+  .hero-buttons {
+    justify-content: center;
+  }
+
+  .hero-photo-stack {
+    grid-template-rows: 180px 180px;
+  }
+}
 </style>
 </head>
 
@@ -1222,21 +1304,32 @@ footer {
 
   <main>
 
-    <section class="hero" id="home">
-      <div class="hero-content">
-  <p class="eyebrow">Culver City Creative Rental Spaces</p>
-  <h1><span class="hero-industry">Industry</span> <span class="hero-house">House</span></h1>
-  <div class="tagline">Create. Gather. Inspire.</div>
-  <p>
-  Creative rental spaces in Culver City for photography, film productions, workshops, company functions, and private events.
-</p>
+   <section class="hero" id="home">
+  <div class="hero-content hero-split">
 
-  <div class="hero-buttons">
-    <a class="btn btn-primary" href="#booking">Book the Space</a>
-    <a class="btn btn-secondary" href="#spaces">Explore Spaces</a>
+    <div class="hero-text">
+      <p class="eyebrow">Culver City Creative Rental Spaces</p>
+      <h1><span class="hero-industry">Industry</span> <span class="hero-house">House</span></h1>
+      <div class="tagline">Create. Gather. Inspire.</div>
+
+      <p>
+        Creative rental spaces in Culver City for photography, film productions, workshops, company functions, and private events.
+      </p>
+
+      <div class="hero-buttons">
+        <a class="btn btn-primary" href="#booking">Book the Space</a>
+        <a class="btn btn-secondary" href="#spaces">Explore Spaces</a>
+      </div>
+    </div>
+
+    <div class="hero-photo-stack">
+      <img src="images/industrycafe.png" alt="Industry House main café space">
+      <img src="images/industrycafe2.png" alt="Industry House bar area">
+      <img src="images/industrycafe3.jpg" alt="Industry House exterior">
+    </div>
+
   </div>
-        </div>
-    </section>
+</section>
 
     <section id="story">
       <div class="container story-grid">
