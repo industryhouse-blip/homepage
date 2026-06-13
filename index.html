@@ -1154,7 +1154,29 @@ footer {
   }
 
   /* paste the rest of the accordion CSS here */
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
 
+.hero-content::before {
+  content: "";
+  position: absolute;
+  top: 42%;
+  left: 46%;
+  width: min(560px, 88vw);
+  aspect-ratio: 1 / 1;
+  background: url("images/industry-house-logo-mark.png") center / contain no-repeat;
+  opacity: 0.07;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.hero-content > * {
+  position: relative;
+  z-index: 1;
+}
 </style>
 </head>
 
@@ -1192,26 +1214,19 @@ footer {
   <main>
 
     <section class="hero" id="home">
-      <div class="container hero-content hero-layout">
-        <div class="hero-copy">
-          <div class="eyebrow">Culver City Creative Rental Spaces</div>
-          <h1><span class="hero-industry">INDUSTRY</span> <span class="hero-house">HOUSE</span></h1>
-          <div class="tagline">Create. Gather. Inspire.</div>
-          <p>
-            Creative rental spaces in Culver City for photography, film productions,
-            music videos, podcasts, workshops, company functions, and private events.
-          </p>
+      <<div class="hero-content">
+  <p class="eyebrow">Culver City Creative Rental Spaces</p>
+  <h1><span class="hero-industry">Industry</span> <span class="hero-house">House</span></h1>
+  <div class="tagline">Create. Gather. Inspire.</div>
+  <p>
+    Creative rental spaces in Culver City for photography, film productions, music videos, podcasts, workshops, company functions, and private events.
+  </p>
 
-          <div class="hero-buttons">
-            <a href="#book" class="btn btn-primary">Book a Space</a>
-            <a href="#spaces" class="btn btn-secondary">Explore the Spaces</a>
-          </div>
+  <div class="hero-buttons">
+    <a class="btn btn-primary" href="#booking">Book the Space</a>
+    <a class="btn btn-secondary" href="#spaces">Explore Spaces</a>
+  </div>
         </div>
-
-        <div class="hero-mark">
-          <img src="images/industry-house-logo-mark.png" alt="Industry House logo">
-        </div>
-      </div>
     </section>
 
     <section id="story">
