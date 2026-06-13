@@ -382,12 +382,14 @@ section {
 }
 
 .photo-card {
-  min-height: 470px;
+  min-height: 520px;
   background:
-    linear-gradient(rgba(38, 63, 53, 0.08), rgba(31, 27, 24, 0.12)),
+    linear-gradient(rgba(38, 63, 53, 0.04), rgba(31, 27, 24, 0.08)),
     url("images/industry-house-ourstory.png");
-  background-size: cover;
-  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-color: #75706A;
   border-radius: var(--radius);
   box-shadow: var(--soft-shadow);
   overflow: hidden;
@@ -1326,11 +1328,9 @@ footer {
           Industry House is guided by the history of Industry Café & Jazz and managed
           with a focus on professionalism, hospitality, and creative collaboration.
         </p>
-
-        <div class="team-grid">
-          <article class="team-card">
-            <div class="portrait owner" role="img" aria-label="Owner portrait"></div>
-            <div class="team-body">
+<div class="team-card">
+  <img src="images/industry-house-aron.png" alt="Aron">
+  <div class="team-body">
               <h3>Aron Tadesse</h3>
               <div class="role">Owner, Industry Café & Jazz</div>
               <p>
@@ -1341,16 +1341,16 @@ footer {
             </div>
           </article>
 
-          <article class="team-card">
-            <div class="portrait manager" role="img" aria-label="Zerin Scales portrait"></div>
-            <div class="team-body">
+ <div class="team-card">
+<img src="images/industry-house-zerin.png" alt="Zerin Scales">
+<div class="team-body">
               <h3>Zerin Scales</h3>
-              <div class="role">Venue Management & Creative Partnerships</div>
+              <div class="role">Venue Management</div>
               <p>
                 Zerin Scales supports Industry House’s booking experience, creative partnerships,
                 production coordination, and guest communication. His focus is helping photographers,
-                filmmakers, brands, artists, and community organizations use the space with clarity,
-                professionalism, and intention.
+                filmmakers, brands, artists, and community organizations use the space with clarity and
+                professionalism.
               </p>
             </div>
           </article>
