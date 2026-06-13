@@ -889,10 +889,9 @@ footer {
 }
 
 
-/* Final mobile optimization */
+/* Safe mobile-only adjustments */
 html,
 body {
-  max-width: 100%;
   overflow-x: hidden;
 }
 
@@ -901,9 +900,9 @@ img {
   height: auto;
 }
 
-@media (max-width: 920px) {
+@media (max-width: 760px) {
   .container {
-    width: min(100% - 32px, 1120px);
+    width: min(100% - 28px, 1120px);
   }
 
   header {
@@ -911,36 +910,33 @@ img {
   }
 
   .nav {
-    min-height: auto;
-    padding: 0.75rem 0 0.65rem;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.65rem;
+    min-height: 70px;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    padding: 0.65rem 0;
   }
 
   .brand.wordmark {
-    font-size: 1.22rem;
-    gap: 0.5rem;
+    font-size: 1.05rem;
+    gap: 0.45rem;
     max-width: 100%;
   }
 
   .brand.wordmark img {
-    height: 44px;
+    height: 38px;
   }
 
   .brand.wordmark .brand-text {
-    gap: 0.14rem;
+    gap: 0.12rem;
   }
 
   .nav-links {
     width: 100%;
-    display: flex;
-    gap: 0.9rem;
     overflow-x: auto;
-    overflow-y: hidden;
     white-space: nowrap;
-    padding: 0.1rem 0 0.35rem;
-    font-size: 0.78rem;
+    gap: 0.85rem;
+    font-size: 0.76rem;
+    padding-bottom: 0.25rem;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
   }
@@ -949,10 +945,37 @@ img {
     display: none;
   }
 
-  .mobile-note {
-    display: none;
+  section {
+    padding: 4.5rem 0;
   }
 
+  .hero {
+    min-height: auto;
+  }
+
+  .hero-content {
+    padding: 4.5rem 0 5rem;
+  }
+
+  .hero h1 {
+    font-size: clamp(3rem, 14vw, 4.5rem);
+    line-height: 0.96;
+  }
+
+  .hero-copy h1 {
+    white-space: nowrap;
+    font-size: clamp(2.15rem, 11vw, 3.25rem);
+  }
+
+  .hero .tagline {
+    font-size: clamp(1.25rem, 6vw, 1.75rem);
+  }
+
+  .hero p {
+    font-size: 1rem;
+  }
+
+  .hero-content.hero-layout,
   .story-grid,
   .two-col,
   .contact-grid,
@@ -963,190 +986,66 @@ img {
     grid-template-columns: 1fr;
   }
 
-  .uses-grid,
-  .amenities-grid,
-  .details-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .gallery-header {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .gallery-grid {
-    grid-template-columns: 1fr 1fr;
-    grid-auto-rows: 230px;
-  }
-
-  .hero-content.hero-layout {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-
   .hero-mark {
     justify-content: center;
-    min-height: auto;
-    margin-top: 0.5rem;
+    margin-top: 1rem;
   }
 
   .hero-mark img {
-    width: min(340px, 78%);
-  }
-}
-
-@media (max-width: 600px) {
-  section {
-    padding: 4rem 0;
+    width: min(300px, 78%);
   }
 
-  .container {
-    width: min(100% - 28px, 1120px);
+  .uses-grid,
+  .amenities-grid,
+  .details-grid {
+    grid-template-columns: 1fr;
   }
 
-  .eyebrow {
-    font-size: 0.68rem;
-    letter-spacing: 0.16em;
+  .gallery-header {
+    display: block;
   }
 
-  .section-title {
-    font-size: clamp(2rem, 10vw, 3rem);
-    line-height: 1;
+  .gallery-grid {
+    grid-template-columns: 1fr;
+    grid-auto-rows: auto;
   }
 
-  .section-copy {
-    font-size: 1rem;
-  }
-
-  .hero {
-    min-height: auto;
-  }
-
-  .hero.short {
-    min-height: 52vh;
-  }
-
-  .hero-content {
-    padding: 4.2rem 0 4.8rem;
-    max-width: 100%;
-  }
-
-  .hero.short .hero-content {
-    padding: 4rem 0;
-  }
-
-  .hero h1 {
-    font-size: clamp(3rem, 15vw, 4.35rem);
-    line-height: 0.95;
-    letter-spacing: -0.055em;
-  }
-
-  .hero.short h1 {
-    font-size: clamp(2.75rem, 13vw, 3.8rem);
-    line-height: 0.98;
-  }
-
-  .hero-copy h1 {
-    white-space: nowrap;
-    font-size: clamp(2.15rem, 12.5vw, 3.45rem);
-    letter-spacing: -0.055em;
-  }
-
-  .hero .tagline {
-    font-size: clamp(1.25rem, 6vw, 1.7rem);
-  }
-
-  .hero p {
-    font-size: 1rem;
-    max-width: 100%;
+  .gallery-item,
+  .gallery-item.large {
+    min-height: 255px;
+    grid-row: span 1;
   }
 
   .hero-buttons,
   .booking-buttons,
   .review-buttons {
     flex-direction: column;
-    width: 100%;
   }
 
   .btn {
     width: 100%;
-    min-height: 48px;
-    padding: 0.9rem 1rem;
-  }
-
-  .uses-grid,
-  .amenities-grid,
-  .details-grid,
-  .gallery-grid,
-  .rules-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .gallery-grid {
-    grid-auto-rows: auto;
-  }
-
-  .gallery-item,
-  .gallery-item.large {
-    min-height: 260px;
-    grid-row: span 1;
-  }
-
-  .venue-image {
-    min-height: 240px;
-  }
-
-  .photo-card,
-  .portrait {
-    min-height: 300px;
-  }
-
-  .venue-body,
-  .team-body,
-  .contact-card,
-  .info-panel,
-  .review-panel {
-    padding: 1.35rem;
-  }
-
-  .review-panel h3 {
-    font-size: clamp(2rem, 11vw, 3.1rem);
   }
 
   .contact-card p {
     overflow-wrap: anywhere;
   }
-
-  footer {
-    text-align: left;
-  }
 }
 
 @media (max-width: 390px) {
   .brand.wordmark {
-    font-size: 1rem;
-    gap: 0.38rem;
+    font-size: 0.95rem;
   }
 
   .brand.wordmark img {
-    height: 38px;
+    height: 34px;
   }
 
   .nav-links {
-    font-size: 0.74rem;
-    gap: 0.75rem;
+    font-size: 0.72rem;
   }
 
   .hero-copy h1 {
-    font-size: clamp(2rem, 11.5vw, 2.65rem);
-  }
-
-  .hero h1 {
-    font-size: clamp(2.6rem, 14vw, 3.55rem);
-  }
-
-  .hero-mark img {
-    width: min(290px, 82%);
+    font-size: clamp(1.9rem, 10.5vw, 2.65rem);
   }
 }
 
